@@ -1,0 +1,37 @@
+
+
+```{r}
+
+library(ZacharyHallemeyerFlagWeather)
+library(ggplot2)
+library(dplyr)
+
+```
+
+
+```{r}
+
+data <- ZacharyHallemeyerFlagWeather::Flagstaff_Weather %>% drop_na()
+data$DATE <- as.Date(data$DATE)
+
+
+
+ggplot(data, aes(x = DATE, y = TMAX)) + 
+  geom_point() + 
+  scale_x_date(date_breaks = "120 month", date_labels = "%b %Y") +
+  labs(x = "Date", y = "Temperature (Fahrenheit)", title = "Maximum Temperature over Time")
+
+
+ggplot(data, aes(x = DATE, y = TMIN)) + 
+  geom_point() + 
+  scale_x_date(date_breaks = "120 month", date_labels = "%b %Y") +
+  labs(x = "Date", y = "Temperature (Fahrenheit)", title = "Minimum Temperature over Time")
+
+
+ggplot(data, aes(x = DATE, y = SNOW)) +
+  geom_point() +
+  scale_x_date(date_breaks = "120 month", date_labels = "%b %Y") +
+  labs(x = "Date", y = "Snowfall (inches)", title = "Snowfall Over Time")
+
+
+```
